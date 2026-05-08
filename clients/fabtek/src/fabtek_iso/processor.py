@@ -69,11 +69,10 @@ class SchematicProcessor:
         #   100mm  -> 20.02mm  (pred: 22.1)
         #   380mm  -> 34.57mm  (pred: 36.3)
         #   20864mm-> 171.85mm (pred: 159.0)
-        # Short pipes get a reasonable drawn size, long pipes are capped ~170mm.
         EZ_A = 4.05
-        EZ_B = 0.369
+        EZ_B = 0.32
         MIN_DRAWN = 8.0    # minimum visibility for very short fittings
-        MAX_DRAWN = 172.0  # cap at longest observed pipe in ez-iso DXF (20864mm -> 171.85mm)
+        MAX_DRAWN = 140.0  # more aggressive cap for long segments
         real_len_mm = real_len
         if real_len < 1e-4:
             effective_len = 0.5

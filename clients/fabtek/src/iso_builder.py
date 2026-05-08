@@ -100,9 +100,8 @@ def main():
             if y < min_y: min_y = y
             if y > max_y: max_y = y
             
-        # ADD PADDING FOR DIMENSIONS (e.g. 20mm each side)
-        # This ensures that even if a pipe is at the edge, its dimension (offset 8mm + text) fits inside.
-        DIM_PADDING = 25.0 
+        # ADD AGGRESSIVE PADDING FOR DIMENSIONS (50mm buffer)
+        DIM_PADDING = 50.0 
         min_x -= DIM_PADDING
         max_x += DIM_PADDING
         min_y -= DIM_PADDING
@@ -119,9 +118,9 @@ def main():
 
         # 2. Determine drawing area from template extents (auto-detected) or A2 defaults
         # Exact drawing square: 405x405 mm
+        # INCREASING MARGIN TO 25% (total 50% buffer) to force a much smaller drawing
         DRAW_AREA_SIZE = 405.0
-        MARGIN = 0.06  # 6% margin to ensure dimensions stay inside the 405x405 area
-
+        MARGIN = 0.25 
         if writer.template_extents:
             xmin, ymin, xmax, ymax = writer.template_extents
             tpl_w = xmax - xmin
@@ -140,10 +139,10 @@ def main():
 
             print("Template detected. Fit into 405x405mm square centered at ({:.1f}, {:.1f})".format(center_x, center_y))
         else:
-            # Fallback A2 defaults
-            target_w = DRAW_AREA_SIZE * (1.0 - 2.0 * MARGIN)
-            target_h = DRAW_AREA_SIZE * (1.0 - 2.0 * MARGIN)
-            center_x = 205.0
+            # Fallback A2 defaults: force a safer smaller box (300x300) centered in the viewport
+            target_w = 300.0
+            target_h = 300.0
+            center_x = 210.0
             center_y = 210.0
 
         scale_x = target_w / width
