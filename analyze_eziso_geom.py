@@ -7,7 +7,7 @@ Analizza la DXF di ez-iso per capire:
 import ezdxf
 import math
 
-EZ_DXF = r"c:\Users\giuli\Desktop\FABTEK-ISO\Antigravity-main\Antigravity-main\clients\fabtek\references\3-DRDS-SS01-W60001-1.dxf"
+EZ_DXF = r"c:\Users\giuli\Desktop\FABTEK-ISO\Antigravity-main\clients\fabtek\references\3-DRDS-SS01-W60001-1.dxf"
 
 doc = ezdxf.readfile(EZ_DXF)
 msp = doc.modelspace()

@@ -100,6 +100,14 @@ def main():
             if y < min_y: min_y = y
             if y > max_y: max_y = y
             
+        # ADD PADDING FOR DIMENSIONS (e.g. 20mm each side)
+        # This ensures that even if a pipe is at the edge, its dimension (offset 8mm + text) fits inside.
+        DIM_PADDING = 25.0 
+        min_x -= DIM_PADDING
+        max_x += DIM_PADDING
+        min_y -= DIM_PADDING
+        max_y += DIM_PADDING
+
         width: float = max_x - min_x
         height: float = max_y - min_y
 
@@ -112,7 +120,7 @@ def main():
         # 2. Determine drawing area from template extents (auto-detected) or A2 defaults
         # Exact drawing square: 405x405 mm
         DRAW_AREA_SIZE = 405.0
-        MARGIN = 0.02  # 2% margin to fill the 405x405 area better
+        MARGIN = 0.06  # 6% margin to ensure dimensions stay inside the 405x405 area
 
         if writer.template_extents:
             xmin, ymin, xmax, ymax = writer.template_extents
@@ -133,8 +141,8 @@ def main():
             print("Template detected. Fit into 405x405mm square centered at ({:.1f}, {:.1f})".format(center_x, center_y))
         else:
             # Fallback A2 defaults
-            target_w = DRAW_AREA_SIZE * 0.96
-            target_h = DRAW_AREA_SIZE * 0.96
+            target_w = DRAW_AREA_SIZE * (1.0 - 2.0 * MARGIN)
+            target_h = DRAW_AREA_SIZE * (1.0 - 2.0 * MARGIN)
             center_x = 205.0
             center_y = 210.0
 
@@ -249,7 +257,7 @@ def main():
                     dx = pts[1][0] - pts[0][0]
                     dy = pts[1][1] - pts[0][1]
                     dz = pts[1][2] - pts[0][2]
-                    length = (dx*dx+dy*dy+dz*dz)**0.5 / 3.28084  # Revit ft to meters
+                    length = (dx*dx+dy*dy+dz*dz)**0.5 / 1000.0  # mm to meters
                 boq.add_pipe(data["TypeName"], "N/A", length)
             else:
                  boq.add_item(data["Category"], data.get("FamilyName",""), "N/A")
@@ -293,8 +301,7 @@ def main():
                     ddx = pts[1][0] - pts[0][0]
                     ddy = pts[1][1] - pts[0][1]
                     ddz = pts[1][2] - pts[0][2]
-                    dist_ft = (ddx*ddx + ddy*ddy + ddz*ddz) ** 0.5
-                    dist_mm = dist_ft * 304.8
+                    dist_mm = (ddx*ddx + ddy*ddy + ddz*ddz) ** 0.5
 
                 if dist_mm < 1.0:
                     continue  # Skip zero-length pipes

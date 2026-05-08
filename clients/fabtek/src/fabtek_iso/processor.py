@@ -74,8 +74,7 @@ class SchematicProcessor:
         EZ_B = 0.369
         MIN_DRAWN = 8.0    # minimum visibility for very short fittings
         MAX_DRAWN = 172.0  # cap at longest observed pipe in ez-iso DXF (20864mm -> 171.85mm)
-        # Revit internal units are FEET. Convert to mm for the NTS formula.
-        real_len_mm = real_len * 304.8
+        real_len_mm = real_len
         if real_len < 1e-4:
             effective_len = 0.5
         else:
@@ -92,16 +91,16 @@ class SchematicProcessor:
         # proportional vector components to preserve their relative lengths 
         # and natural sloped angle on the 2D plane.
         
-        is_cardinal = False
-        if abs_sx > 0.99:
+        # AGGRESSIVE AXIS SNAPPING
+        # To match the "readable" look of Ez-ISO, we force every segment 
+        # to its dominant axis (X, Y, or Z) to ensure perfect 30/150/90 angles.
+        is_cardinal = True
+        if abs_sx >= abs_sy and abs_sx >= abs_sz:
             sx, sy, sz = (1.0 if sx > 0 else -1.0), 0.0, 0.0
-            is_cardinal = True
-        elif abs_sy > 0.99:
+        elif abs_sy >= abs_sx and abs_sy >= abs_sz:
             sx, sy, sz = 0.0, (1.0 if sy > 0 else -1.0), 0.0
-            is_cardinal = True
-        elif abs_sz > 0.99:
+        else:
             sx, sy, sz = 0.0, 0.0, (1.0 if sz > 0 else -1.0)
-            is_cardinal = True
 
         # If it's cardinal, its unit vector length is 1.0. 
         # If it's sloped, its unit vector length is also 1.0.
