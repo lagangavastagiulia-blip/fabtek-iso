@@ -69,6 +69,7 @@ class SchematicProcessor:
         #   100mm  -> 20.02mm  (pred: 22.1)
         #   380mm  -> 34.57mm  (pred: 36.3)
         #   20864mm-> 171.85mm (pred: 159.0)
+        EZ_A = 4.05
         EZ_B = 0.369
         MIN_DRAWN = 8.0    # minimum visibility for very short fittings
         MAX_DRAWN = 172.0  # standard Ez-ISO cap
