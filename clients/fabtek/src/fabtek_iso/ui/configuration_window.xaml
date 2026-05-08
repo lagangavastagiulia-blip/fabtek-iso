@@ -1,0 +1,107 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Fabtek-ISO Configuration" Height="500" Width="700" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Name="MainTabControl" Grid.Row="0">
+            <!-- TAB 1: SYMBOL MAPPING -->
+            <TabItem Header="Symbol Mapping">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Text="Map Revit Families to DXF Blocks" FontWeight="Bold" Margin="0,0,0,5"/>
+                    
+                    <DataGrid Name="MappingGrid" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Revit Family Name" Binding="{Binding FamilyName}" Width="200" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="SKEY" Binding="{Binding Skey}" Width="60"/>
+                            <DataGridTemplateColumn Header="DXF Symbol" Width="200">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.AvailableSymbols}"
+                                                  SelectedItem="{Binding DxfFileName, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridCheckBoxColumn Header="Gasket" Binding="{Binding HasGasket}" Width="50"/>
+                            <DataGridCheckBoxColumn Header="Bolt" Binding="{Binding HasBolt}" Width="50"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,10,0,0">
+                        <Button Name="BtnReloadFamilies" Content="Reload From Project" Width="140" Height="25" Margin="0,0,10,0" />
+                        <Button Name="BtnOpenFolder" Content="Open Symbols Folder" Width="140" Height="25" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- TAB 2: LAYOUT SETTINGS -->
+            <TabItem Header="Layout Settings">
+                <StackPanel Margin="10">
+                    <GroupBox Header="Template Selection" Margin="0,0,0,10">
+                        <StackPanel Margin="5">
+                            <TextBlock Text="Current Template (DXF/DWG):"/>
+                            <Grid Margin="0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Name="TxtTemplatePath" Text="{Binding TemplatePath, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Height="25"/>
+                                <Button Name="BtnBrowseTemplate" Content="..." Grid.Column="1" Width="30" Height="25" Margin="5,0,0,0"/>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <GroupBox Header="Page Settings" Margin="0,0,0,10">
+                        <StackPanel Margin="5">
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <TextBlock Text="Paper Size:" Width="100"/>
+                                <ComboBox Name="CmbPaperSize" Width="150" SelectedIndex="0">
+                                    <ComboBoxItem Content="A2 (ISO)"/>
+                                    <ComboBoxItem Content="A1 (ISO)"/>
+                                    <ComboBoxItem Content="A3 (ISO)"/>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <TextBlock Text="Scale Factor:" Width="100"/>
+                                <TextBox Name="TxtScale" Text="1.0" Width="50"/>
+                                <TextBlock Text="(1.0 = Standard)" Margin="5,0,0,0" FontStyle="Italic"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <GroupBox Header="Visual Style">
+                        <StackPanel Margin="5">
+                            <CheckBox Name="ChkShowSkews" Content="Show Skew Triangles" IsChecked="True" Margin="0,5"/>
+                            <CheckBox Name="ChkShowDims" Content="Show Dimensions" IsChecked="True" Margin="0,5"/>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </TabItem>
+
+            <!-- TAB 3: BOQ SETTINGS -->
+            <TabItem Header="BoQ Settings">
+                <StackPanel Margin="10">
+                    <TextBlock Text="Bill of Quantities Configuration" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <CheckBox Name="ChkBoQWelds" Content="Include Estimated Welds" IsChecked="True" Margin="0,5"/>
+                    <CheckBox Name="ChkBoQBolts" Content="Include Bolts/Gaskets" IsChecked="False" Margin="0,5"/>
+                    <CheckBox Name="ChkBoQSupports" Content="Include Pipe Supports" IsChecked="True" Margin="0,5"/>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+
+        <!-- FOOTER BUTTONS -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Name="BtnSave" Content="Save &amp; Close" Width="100" Height="30" Margin="0,0,10,0" />
+            <Button Name="BtnCancel" Content="Cancel" Width="80" Height="30" />
+        </StackPanel>
+    </Grid>
+</Window>

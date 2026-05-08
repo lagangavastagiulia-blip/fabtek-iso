@@ -1,0 +1,116 @@
+{
+    "line_number": "L-100",
+    "iso_page": "1",
+    "output_path": "C:/Users/giuli/Desktop/FABTEK-ISO/Antigravity-main/Antigravity-main/clients/fabtek/tests/output_test.dxf",
+    "template_path": "",
+    "view_right": [
+        0.707,
+        -0.707,
+        0.0
+    ],
+    "view_up": [
+        0.0,
+        0.0,
+        1.0
+    ],
+    "elements": [
+        {
+            "Id": 100,
+            "Category": "Pipes",
+            "FamilyName": "",
+            "TypeName": "Pipe 6inch",
+            "Points": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    3000,
+                    0,
+                    0
+                ]
+            ],
+            "ConnectedIds": [
+                200
+            ]
+        },
+        {
+            "Id": 200,
+            "Category": "Pipe Fittings",
+            "FamilyName": "Elbow Generic",
+            "TypeName": "Elbow 90",
+            "Points": [
+                [
+                    3000,
+                    0,
+                    0
+                ]
+            ],
+            "ConnectedIds": [
+                100,
+                300
+            ]
+        },
+        {
+            "Id": 300,
+            "Category": "Pipes",
+            "FamilyName": "",
+            "TypeName": "Pipe 6inch",
+            "Points": [
+                [
+                    3000,
+                    0,
+                    0
+                ],
+                [
+                    3000,
+                    2000,
+                    0
+                ]
+            ],
+            "ConnectedIds": [
+                200,
+                400
+            ]
+        },
+        {
+            "Id": 400,
+            "Category": "Pipe Fittings",
+            "FamilyName": "Elbow Generic",
+            "TypeName": "Elbow 90",
+            "Points": [
+                [
+                    3000,
+                    2000,
+                    0
+                ]
+            ],
+            "ConnectedIds": [
+                300,
+                500
+            ]
+        },
+        {
+            "Id": 500,
+            "Category": "Pipes",
+            "FamilyName": "",
+            "TypeName": "Pipe 6inch",
+            "Points": [
+                [
+                    3000,
+                    2000,
+                    0
+                ],
+                [
+                    3000,
+                    2000,
+                    1500
+                ]
+            ],
+            "ConnectedIds": [
+                400
+            ]
+        }
+    ]
+}

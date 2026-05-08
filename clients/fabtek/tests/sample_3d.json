@@ -1,0 +1,194 @@
+{
+    "line_number": "TEST-3D",
+    "iso_page": "1",
+    "output_path": "C:/Users/giuli/Desktop/FABTEK-ISO/Antigravity-main/Antigravity-main/clients/fabtek/tests/output_3d.dxf",
+    "template_path": "",
+    "view_right": [
+        1.0,
+        0.0,
+        0.0
+    ],
+    "view_up": [
+        0.0,
+        0.0,
+        1.0
+    ],
+    "elements": [
+        {
+            "Id": 100,
+            "Category": "Pipes",
+            "FamilyName": "",
+            "TypeName": "Pipe 2inch",
+            "Points": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    603,
+                    0,
+                    0
+                ]
+            ],
+            "ConnectedIds": [
+                200
+            ]
+        },
+        {
+            "Id": 200,
+            "Category": "Pipe Fittings",
+            "FamilyName": "Elbow Generic",
+            "TypeName": "Elbow 90",
+            "Points": [
+                [
+                    603,
+                    0,
+                    0
+                ]
+            ],
+            "ConnectedIds": [
+                100,
+                300
+            ]
+        },
+        {
+            "Id": 300,
+            "Category": "Pipes",
+            "FamilyName": "",
+            "TypeName": "Pipe 2inch",
+            "Points": [
+                [
+                    603,
+                    0,
+                    0
+                ],
+                [
+                    603,
+                    0,
+                    380
+                ]
+            ],
+            "ConnectedIds": [
+                200,
+                400
+            ]
+        },
+        {
+            "Id": 400,
+            "Category": "Pipe Fittings",
+            "FamilyName": "Elbow Generic",
+            "TypeName": "Elbow 90",
+            "Points": [
+                [
+                    603,
+                    0,
+                    380
+                ]
+            ],
+            "ConnectedIds": [
+                300,
+                500
+            ]
+        },
+        {
+            "Id": 500,
+            "Category": "Pipes",
+            "FamilyName": "",
+            "TypeName": "Pipe 2inch",
+            "Points": [
+                [
+                    603,
+                    0,
+                    380
+                ],
+                [
+                    603,
+                    757,
+                    380
+                ]
+            ],
+            "ConnectedIds": [
+                400,
+                600
+            ]
+        },
+        {
+            "Id": 600,
+            "Category": "Pipe Fittings",
+            "FamilyName": "Elbow Generic",
+            "TypeName": "Elbow 90",
+            "Points": [
+                [
+                    603,
+                    757,
+                    380
+                ]
+            ],
+            "ConnectedIds": [
+                500,
+                700
+            ]
+        },
+        {
+            "Id": 700,
+            "Category": "Pipes",
+            "FamilyName": "",
+            "TypeName": "Pipe 2inch",
+            "Points": [
+                [
+                    603,
+                    757,
+                    380
+                ],
+                [
+                    1903,
+                    757,
+                    380
+                ]
+            ],
+            "ConnectedIds": [
+                600,
+                800
+            ]
+        },
+        {
+            "Id": 800,
+            "Category": "Pipe Fittings",
+            "FamilyName": "Elbow Generic",
+            "TypeName": "Elbow 90",
+            "Points": [
+                [
+                    1903,
+                    757,
+                    380
+                ]
+            ],
+            "ConnectedIds": [
+                700,
+                900
+            ]
+        },
+        {
+            "Id": 900,
+            "Category": "Pipes",
+            "FamilyName": "",
+            "TypeName": "Pipe 2inch",
+            "Points": [
+                [
+                    1903,
+                    757,
+                    380
+                ],
+                [
+                    1903,
+                    757,
+                    0
+                ]
+            ],
+            "ConnectedIds": [
+                800
+            ]
+        }
+    ]
+}

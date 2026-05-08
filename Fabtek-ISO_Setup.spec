@@ -1,0 +1,44 @@
+# -*- mode: python ; coding: utf-8 -*-
+
+
+a = Analysis(
+    ['clients\\fabtek\\installer\\install_plugin.py'],
+    pathex=[],
+    binaries=[],
+    datas=[
+        ('clients/fabtek/src', 'src'),
+        ('clients/fabtek/templates', 'templates'),
+        ('clients/fabtek/config', 'config'),
+        ('clients/fabtek/resources', 'resources'),
+        ('dist/iso_builder.exe', 'src/bin'),
+    ],
+    hiddenimports=[],
+    hookspath=[],
+    hooksconfig={},
+    runtime_hooks=[],
+    excludes=[],
+    noarchive=False,
+    optimize=0,
+)
+pyz = PYZ(a.pure)
+
+exe = EXE(
+    pyz,
+    a.scripts,
+    a.binaries,
+    a.datas,
+    [],
+    name='Fabtek-ISO_Setup',
+    debug=False,
+    bootloader_ignore_signals=False,
+    strip=False,
+    upx=False,
+    upx_exclude=[],
+    runtime_tmpdir=None,
+    console=True,
+    disable_windowed_traceback=False,
+    argv_emulation=False,
+    target_arch=None,
+    codesign_identity=None,
+    entitlements_file=None,
+)

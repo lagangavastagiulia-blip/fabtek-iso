@@ -1,0 +1,13 @@
+
+--- Analyzing EZ-ISO ---
+Quote      397 mm -> L:   18.0 | Ang:  90.0
+Quote 30160001 mm -> L:   95.0 | Ang: 180.0
+Quote 301600011 mm -> L:    6.4 | Ang:  90.0
+Quote 390396031 mm -> L:   10.0 | Ang:  90.0
+Bounding Box: W=581.3, H=134.7
+
+--- Analyzing FABTEK-ISO ---
+Quote     2760 mm -> L:    8.0 | Ang:  90.0
+Quote   120355 mm -> L:  195.0 | Ang:   0.0
+Quote 390396031 mm -> L:   10.0 | Ang:  90.0
+Bounding Box: W=581.3, H=408.0

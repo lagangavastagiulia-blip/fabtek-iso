@@ -1,0 +1,8 @@
+{
+    "mappings": {
+        "Revit_Ball_Valve_Standard": "SYMBOL_VALVE_BALL.dxf",
+        "Revit_Gate_Valve_Standard": "SYMBOL_VALVE_GATE.dxf",
+        "Revit_Check_Valve_Standard": "SYMBOL_VALVE_CHECK.dxf"
+    },
+    "default_symbol": "SYMBOL_VALVE_GENERIC.dxf"
+}
